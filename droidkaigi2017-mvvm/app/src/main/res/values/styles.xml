@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,4 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.ColoredStatusBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorAccent">@color/white_alpha_95</item>
+    </style>
+
+    <!--==================== Toolbar & Actionbar ====================-->
+    <style name="BaseToolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <!-- Don't change to `@color/toolbar_background`. This is workaround for a bug on API 16. -->
+        <item name="android:background">@drawable/bg_toolbar</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+        <item name="android:theme">@style/ToolbarTheme</item>
+        <item name="elevation">2dp</item>
+        <item name="actionMenuTextColor">@color/toolbar_text</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ToolbarTheme</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/toolbar_text</item>
+        <item name="android:textColorSecondary">@color/toolbar_text</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@null</item>
+        <item name="submitBackground">@null</item>
+    </style>
 </resources>
