@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.activity.MainActivity">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.u1fukui.droidkaigi2017_mvvm.viewmodel.ToolbarViewModel" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,26 +19,8 @@
             android:id="@+id/toolbar"
             style="@style/BaseToolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:text="@string/tab_home"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+            android:layout_height="wrap_content"
+            app:title="@{viewModel.toolbarTitle}" />
 
         <FrameLayout
             android:id="@+id/content_view"

@@ -14,10 +14,13 @@ import com.u1fukui.droidkaigi2017_mvvm.R;
 import com.u1fukui.droidkaigi2017_mvvm.databinding.ActivityMainBinding;
 import com.u1fukui.droidkaigi2017_mvvm.view.fragment.HomeFragment;
 import com.u1fukui.droidkaigi2017_mvvm.view.fragment.MyPageFragment;
+import com.u1fukui.droidkaigi2017_mvvm.viewmodel.ToolbarViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
+    private ToolbarViewModel viewModel;
 
     private Fragment homeFragment;
 
@@ -26,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        setSupportActionBar(binding.toolbar);
 
+        viewModel = new ToolbarViewModel();
+        binding.setViewModel(viewModel);
+        
         initViews();
         initFragments(savedInstanceState);
     }
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                binding.title.setText(item.getTitle());
+                viewModel.setToolbarTitle(item.getTitle().toString());
                 item.setChecked(true);
 
                 switch (item.getItemId()) {
