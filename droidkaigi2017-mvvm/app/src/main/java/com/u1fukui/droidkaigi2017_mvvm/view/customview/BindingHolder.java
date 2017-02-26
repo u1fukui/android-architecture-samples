@@ -1,6 +1,5 @@
-package com.u1fukui.droidkaigi2017_mvvm.customview;
+package com.u1fukui.droidkaigi2017_mvvm.view.customview;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;

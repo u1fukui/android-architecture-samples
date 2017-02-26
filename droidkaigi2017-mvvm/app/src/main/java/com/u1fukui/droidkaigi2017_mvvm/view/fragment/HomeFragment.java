@@ -1,6 +1,8 @@
 package com.u1fukui.droidkaigi2017_mvvm.view.fragment;
 
+import android.databinding.ObservableList;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
@@ -15,8 +17,12 @@ import android.view.ViewGroup;
 import com.u1fukui.droidkaigi2017_mvvm.App;
 import com.u1fukui.droidkaigi2017_mvvm.R;
 import com.u1fukui.droidkaigi2017_mvvm.databinding.FragmentHomeBinding;
+import com.u1fukui.droidkaigi2017_mvvm.databinding.ViewContributorBinding;
 import com.u1fukui.droidkaigi2017_mvvm.repository.contributors.ContributorsRemoteDataSource;
 import com.u1fukui.droidkaigi2017_mvvm.repository.contributors.ContributorsRepository;
+import com.u1fukui.droidkaigi2017_mvvm.view.customview.BindingHolder;
+import com.u1fukui.droidkaigi2017_mvvm.view.customview.ObservableListRecyclerAdapter;
+import com.u1fukui.droidkaigi2017_mvvm.viewmodel.ContributorViewModel;
 import com.u1fukui.droidkaigi2017_mvvm.viewmodel.ContributorsViewModel;
 import com.u1fukui.droidkaigi2017_mvvm.viewmodel.ToolbarViewModel;
 
@@ -90,4 +96,23 @@ public class HomeFragment extends Fragment implements ContributorsViewModel.Call
                 .show();
     }
     //endregion
+
+    private static class HomeRecyclerAdapter extends ObservableListRecyclerAdapter<ContributorViewModel, BindingHolder<ViewContributorBinding>> {
+
+        public HomeRecyclerAdapter(@NonNull ObservableList<ContributorViewModel> list) {
+            super(list);
+        }
+
+        @Override
+        public BindingHolder<ViewContributorBinding> onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new BindingHolder<>(parent, R.layout.view_contributor);
+        }
+
+        @Override
+        public void onBindViewHolder(BindingHolder<ViewContributorBinding> holder, int position) {
+            ContributorViewModel viewModel = getItem(position);
+            holder.binding.setViewModel(viewModel);
+            holder.binding.executePendingBindings();
+        }
+    }
 }
